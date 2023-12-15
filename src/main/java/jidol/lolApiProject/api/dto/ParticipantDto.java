@@ -3,7 +3,7 @@ package jidol.lolApiProject.api.dto;
 import lombok.Data;
 
 @Data
-public class ParticipantDto {
+public class ParticipantDto { // 커밋테스트
 
     private String puuid; // 유저 암호화 아이디 pk임
     private String summonerName; // 소환사 닉네임
