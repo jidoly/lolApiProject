@@ -1,5 +1,5 @@
 server:
-  port: 8070
+  port: 8010
 spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/lol
@@ -22,3 +22,14 @@ logging:
 #    org.hibernate.orm.jdbc.bind: trace
 
 # Feign
+#open api key
+riot.api.api-key: RGAPI-705616bf-4a89-430a-965a-2ab5dbfdab3a
+#소환사 닉네임으로 암호화된 유저아이디 추출
+riot-api.by-name-url: https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name
+#암호화된 유저아이디로 유저정보 추출
+riot-api.by-summoner-url: https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner
+#이미지 url
+riot-img-url: https://ddragon.leagueoflegends.com/cdn/
+# version
+riot-img-version: 13.24.1
+

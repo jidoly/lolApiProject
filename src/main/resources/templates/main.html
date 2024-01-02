@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 
 <head>
@@ -10,9 +10,7 @@
 <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">-->
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
     <link href="/css/mdb.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
     <link href="/css/style.min.css" rel="stylesheet">
 
 
@@ -27,7 +25,7 @@
         <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand waves-effect" href="/">
+            <a class="navbar-brand waves-effect " href="/">
                 <img src="/static/img/WGMimgresize.png" alt=""><strong class="blue-text">WGM.GG</strong>
             </a>
 
@@ -140,7 +138,9 @@
     </tbody>
 </table>
 <h2 th:text="${leagueInfo}"></h2>
-<div th:each="list : ${data}">
+<!--<h2 th:text="${gameData}"></h2>-->
+<div th:each="list : ${gameData}">
+    <p th:text="${list.gameEndTimestamp}"></p>
     <table th:each ="user : ${list.participants}">
         <tr>
             <td th:if="${user.getTeamId() == 100}" th:text="${user.getSummonerName()}" style='background:red'>
@@ -149,7 +149,7 @@
             </td>
         </tr>
 
-        <tr th:if="${list.getMyPuuid() == user.getPuuid()}" th:text="${user}">   </tr>
+        <tr th:if="${list.getMyPuuid() == user.getPuuid()}" th:text="${user}"> me!! </tr>
 
     </table>
 </div>

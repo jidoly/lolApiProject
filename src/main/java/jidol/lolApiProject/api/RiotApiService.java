@@ -1,10 +1,11 @@
 package jidol.lolApiProject.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jidol.lolApiProject.api.dto.GameDto;
 import jidol.lolApiProject.api.dto.InfoDto;
 import jidol.lolApiProject.api.dto.LeagueDto;
-import jidol.lolApiProject.api.dto.UserDto;
+import jidol.lolApiProject.api.feignClient.GameApiClient;
+import jidol.lolApiProject.api.feignClient.LeagueApiClient;
+import jidol.lolApiProject.api.feignClient.SummonerApiClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,22 +18,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RiotApiService {
 
-    private final RiotApiClient riotApiClient;
+    private final SummonerApiClient summonerApiClient;
     private final GameApiClient gameApiClient;
     private final LeagueApiClient leagueApiClient;
-    ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * 소환사이름 -> puuid로 게임 List -> 일단 List[0]의 게임 정보
+     * 소환사이름 -> puuid로 게임 List 가져오기
      *
      * @return
      */
-    public List<InfoDto> findBySummonerName(String summonerName) {
+    public List<InfoDto> findBySummonerName(String summonerName, int start, int count) {
         List<InfoDto> result = new ArrayList<>();
+        //암호화된 puuid 가져오기
+        String puuid = summonerApiClient.getUserDto(summonerName).getPuuid();
 
-        String puuid = riotApiClient.getUserDto(summonerName).getPuuid();
-
-        List<String> gameList = gameApiClient.getGameList(puuid);
+        List<String> gameList = gameApiClient.getGameList(puuid,start,count);
 
         for (String matchId : gameList) {
             GameDto gameDto = gameApiClient.getgameDto(matchId);
@@ -47,12 +47,10 @@ public class RiotApiService {
 
     public List<LeagueDto> findLeagueInfo(String summonerName) {
 
-        String id = riotApiClient.getUserDto(summonerName).getId();
-
-        log.info("====id={}=========", id);
+        String id = summonerApiClient.getUserDto(summonerName).getId();
 
         List<LeagueDto> result = leagueApiClient.getLeagueDto(id);
-        log.info("====result={}=========", result);
+
         return result;
     }
 }

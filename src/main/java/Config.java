@@ -1,4 +1,5 @@
 import feign.Logger;
+import jidol.lolApiProject.api.RiotApiInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,4 +11,6 @@ public class Config {
     Logger.Level feignLoggerLevel(){
         return Logger.Level.FULL;
     }
+
+
 }
