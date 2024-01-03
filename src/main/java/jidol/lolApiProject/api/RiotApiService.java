@@ -29,11 +29,13 @@ public class RiotApiService {
      */
     public List<InfoDto> findBySummonerName(String summonerName, int start, int count) {
         List<InfoDto> result = new ArrayList<>();
-        //암호화된 puuid 가져오기
+        //암호화된 소환사의 puuid 가져오기
         String puuid = summonerApiClient.getUserDto(summonerName).getPuuid();
 
+        //소환사의 puuid로 최근 matchId List 얻어오기
         List<String> gameList = gameApiClient.getGameList(puuid,start,count);
 
+        //matchId로 게임 정보를 Dto 리스트에 담아서 반환하기
         for (String matchId : gameList) {
             GameDto gameDto = gameApiClient.getgameDto(matchId);
             InfoDto gameInfo = gameDto.getInfo();

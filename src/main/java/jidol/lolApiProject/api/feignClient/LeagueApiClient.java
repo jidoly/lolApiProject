@@ -13,4 +13,5 @@ public interface LeagueApiClient {
 
     @GetMapping(value = "/{id}")
     List<LeagueDto> getLeagueDto(@PathVariable("id") String id);
+
 }

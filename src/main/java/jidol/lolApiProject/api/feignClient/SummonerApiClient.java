@@ -13,4 +13,3 @@ public interface SummonerApiClient {
     UserDto getUserDto(@PathVariable("summonerName") String summonerName);
 
 }
-

@@ -148,9 +148,7 @@
             <td  th:if="${user.getTeamId() == 200}" th:text="${user.getSummonerName()}" style="background: blue">
             </td>
         </tr>
-
         <tr th:if="${list.getMyPuuid() == user.getPuuid()}" th:text="${user}"> me!! </tr>
-
     </table>
 </div>
 </body>

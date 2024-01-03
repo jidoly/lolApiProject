@@ -67,28 +67,22 @@ public class MainController {
 
 
         int startValue = (start != null) ? start : 0;
-        int countValue = (count != null) ? count : 1;
+        int countValue = (count != null) ? count : 20;
 
-        //Get : 소환사 정보 - tier / win / lose .. By:summonerName
-//        List<LeagueDto> leagueInfo = riotApiService.findLeagueInfo(summonerName);
+//        Get : 소환사 정보 - tier / win / lose .. By:summonerName
+        List<LeagueDto> leagueInfo = riotApiService.findLeagueInfo(summonerName);
 
-        //Get : 게임 정보 - gameId, gameEndTimestamp, <ParticipantDto> - 게임 정보(kill/assist/death..)  .. By:summonerName
-//        List<InfoDto> gameData = riotApiService.findBySummonerName(summonerName,startValue,countValue);
+//        Get : 게임 정보 - gameId, gameEndTimestamp, <ParticipantDto> - 게임 정보(kill/assist/death..)  .. By:summonerName
+        List<InfoDto> gameData = riotApiService.findBySummonerName(summonerName,startValue,countValue);
 
 
-//        model.addAttribute("leagueInfo", leagueInfo);
-//        model.addAttribute("gameData", gameData);
+        model.addAttribute("leagueInfo", leagueInfo);
+        model.addAttribute("gameData", gameData);
 
+        //이미지 url
         String img = imageUrl + imgVer;
-        TestDto testDto = createTestDto();
-
-        Long gameEndTimestamp = 1703875035941L;
-
-        
         model.addAttribute("img", img);
-
-        model.addAttribute("gameEndTimestamp", gameEndTimestamp);
-        model.addAttribute("oneGameInfo", testDto);
+//
         return "main2";
 
     }

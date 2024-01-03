@@ -1,14 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="common_header(title)">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>RiotAPI</title>
-  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/myStyle.css}">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/mdb.min.css" rel="stylesheet">
-  <link href="/css/style.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>RiotAPI</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/myStyle.css}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
 </head>
 <!--
 // v0 by Vercel.
@@ -16,193 +16,186 @@
 -->
 
 <main class="w-full">
-  <header class="flex justify-between items-center p-4 bg-gray-800 text-white">
-    <div class="flex items-center">
-      <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-8 h-8 mr-2"
-      >
-        <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path>
-      </svg>
-      <h1 class="text-2xl font-bold">LoL Records</h1>
-    </div>
-    <nav class="space-x-4">
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Home
-      </a>
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Search
-      </a>
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Champions
-      </a>
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Ranked Stats
-      </a>
-    </nav>
+    <header class="flex justify-between items-center p-4 bg-gray-800 text-white">
+        <div class="flex items-center">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-8 h-8 mr-2"
+            >
+                <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path>
+            </svg>
+            <h1 class="text-2xl font-bold">LoL Records</h1>
+        </div>
+        <nav class="space-x-4">
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Home
+            </a>
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Search
+            </a>
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Champions
+            </a>
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Ranked Stats
+            </a>
+        </nav>
 
-  </header>
-  <section
-          class="relative h-screen bg-center bg-cover"
-          style="background-image:url('/placeholder.svg?height=1080&amp;width=1920')"
-  >
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="relative z-10 flex flex-col items-center justify-center h-full space-y-4 text-center text-white">
-      <h2 class="text-4xl font-bold">Find and analyze player records in League of Legends</h2>
-      <div class="rounded-md bg-white p-2 w-1/3">
-        <input type="search" class="w-full" placeholder="Search summoner name..." />
-      </div>
-      <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-40">
-        Get Started
-      </button>
-    </div>
-  </section>
-
-
-
-
-  <section class="py-12 px-4">
-    <h2 class="text-3xl font-bold mb-6 text-center">Featured Players</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-  </section>
-
-
-
-
-
-  <section class="py-12 px-4">
-    <h2 class="text-3xl font-bold mb-6 text-center">Recent Matches</h2>
-    <div class="grid grid-cols-1 gap-6">
-
-      <table class="table table-bordered">
-        <!--    <h2 th:text="${data}"></h2>-->
-        <thead class="black white-text">
-        <tr>
-          <th scope="col">INFO</th>
-          <th scope="col">Spell</th>
-          <th scope="col">아이템</th>
-          <th scope="col">게임 정보</th>
-          <th scope="col">데미지</th>
-          <th scope="col">블루 오브젝트</th>
-          <th scope="col">레드 오브젝트</th>
-          <th scope="col">블루 팀</th>
-          <th scope="col">레드 팀</th>
-        </tr>
-        </thead>
-        <tbody class="items-center justify-center">
-        <!--{% for i, Game_DATA in zip(my_most_one, Game_DATAs) %}-->
-        <tr th:class="${oneGameInfo.win} ? 'win' : 'loose'">
-          <!--info-->
-          <td>
-            <span th:text="${#calendars.format(gameEndTimestamp, 'yyyy년 MM월 dd일')}"></span>
-            <br>
-            <span th:text="${#calendars.format(gameEndTimestamp, 'EEEE a h시 mm분')}"></span>
-            <br>
-
-            <!--            <img src="https://ddragon.leagueoflegends.com/cdn/10.11.1/img/champion/Janna.png" width="50"-->
-            <img th:src="${img} + '/img/champion/'+ ${oneGameInfo.championName}  + '.png'"
-                 width="50"
-                 class="img-responsive center-block" alt="Sample post image"><br>
-            <span class="my-info">KDA :
-              <span th:text="${oneGameInfo.kills}"></span>
-              <span th:text="${oneGameInfo.assists}"></span>
-              <span th:text="${oneGameInfo.deaths}"></span>
-            </span><br>
-            <span th:text="${#calendars.format(#calendars.create(0,0,0,0,0,0,oneGameInfo.timePlayed * 1000), 'mm분 ss초')}"></span>
-          </td>
-          <!--spell-->
-          <td>
-            <img th:src="@{'/img/spell/' + ${oneGameInfo.summoner1Id} + '.png'}" width="50"
-                 class="img-responsive center-block" alt="Sample post image">
-            <img th:src="@{'/img/spell/' + ${oneGameInfo.summoner2Id} + '.png'}" width="50"
-                 class="img-responsive center-block" alt="Sample post image">
-          </td>
-          <!--item-->
-          <td class="flex">
-            <div th:each="item, iterStat : ${#numbers.sequence(0, 5)}" class="img-container">
-              <img th:src="${img} + '/img/item/' + ${oneGameInfo['item' + item]} + '.png'"
-                   width="30"
-                   class="img-responsive center-block" alt="Sample post image"/>
+    </header>
+    <section
+            class="relative h-screen bg-center bg-cover"
+            style="background-image:url('/img/background.jpg?height=1080&amp;width=1920')"
+    >
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full space-y-4 text-center text-white">
+            <h2 class="text-4xl font-bold">Find and analyze player records in League of Legends</h2>
+            <div class="rounded-md bg-white p-2 w-1/3">
+                <input type="search" class="w-full" placeholder="Search summoner name..."/>
             </div>
-          <td>
-            <span class="badge badge-info">획득골드 : 123 </span><br>
-            <!--{% if Game_DATA['game_time'] // 60 <=  Game_DATA['stats']['visionScore'] %}-->
-            <span class="badge badge-primary">시야점수 좋음</span><br>
-            <!--{% else %}-->
-            <span class="badge badge-danger">시야점수 나쁨</span><br>
-            <!--{% endif %}-->
-            <span class="badge badge-primary"><!--{{Game_DATA['stats']['largestMultiKill']}}-->연속 킬 달성!</span><br>
-            <span class="badge badge-info"><!--시야점수 : {{ Game_DATA['stats']['visionScore'] }}--></span>
-          </td>
-
-          <td>
-            <span class="badge badge-info">총 데미지 : 123 </span><br>
-            <span class="badge badge-info">AP 데미지 : 123 </span><br>
-            <span class="badge badge-info">AD 데미지 : 123</span> <br>
-            <span class="badge badge-info">챔피언 : 123</span> <br>
-            <span class="badge badge-info">받은 피해 : 123</span> <br>
-            <span class="badge badge-info">회복 : 123</span>
-          </td>
-          <td>
-            <span class="badge badge-primary badge-pill">포탑 파괴:  123</span><br>
-            <span class="badge badge-primary badge-pill">억제기 파괴: 123</span><br>
-            <span class="badge badge-primary badge-pill">바론 처치: 123</span><br>
-            <span class="badge badge-primary badge-pill">전령 처치: 123}</span>
-          </td>
-          <td>
-            <span class="badge badge-danger badge-pill">포탑 파괴 : 123</span><br>
-            <span class="badge badge-danger badge-pill">억제기 파괴 : 123</span><br>
-            <span class="badge badge-danger badge-pill">바론 처치 : 123</span><br>
-            <span class="badge badge-danger badge-pill">전령 처치 : 123</span>
-          </td>
-          <td>
-            <span class="badge badge-light">123</span><br>
-          </td>
-          <td>
-            <span class="badge badge-light">123</span><br>
-          </td>
-
-        </tr>
-        </tbody>
-      </table>
-
-    </div>
-
-  </section>
+            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-40">
+                Get Started
+            </button>
+        </div>
+    </section>
 
 
+    <section class="py-12 px-4">
+        <h2 class="text-3xl font-bold mb-6 text-center">Featured Players</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
 
 
+    <section class="py-12 px-4">
+        <h2 class="text-3xl font-bold mb-6 text-center">Recent Matches</h2>
+        <div class="grid grid-cols-1 gap-6">
+
+            <table class="table table-bordered">
+                <!--    <h2 th:text="${data}"></h2>-->
+                <thead class="black white-text">
+                <tr>
+                    <th scope="col">INFO</th>
+                    <th scope="col">Spell</th>
+                    <th scope="col">아이템</th>
+                    <th scope="col">포지션</th>
+                    <th scope="col">게임 정보</th>
+                    <th scope="col">킬 기록</th>
+<!--                    <th scope="col">블루팀</th>-->
+<!--                    <th scope="col">레드팀</th>-->
+                </tr>
+                </thead>
+                <tbody class="items-center justify-center">
+                <div th:each="list : ${gameData}">
+                    <div th:each="oneGameInfo : ${list.participants}">
+                        <!-- 내 게임 정보 end -->
+                        <tr th:if="${list.getMyPuuid() == oneGameInfo.getPuuid()}" th:class="${oneGameInfo.win} ? 'win' : 'loose'" >
+                            <!--info-->
+                            <td>
+                                <span th:text="${#calendars.format(list.gameEndTimestamp, 'yyyy년 MM월 dd일')}"></span>
+                                <br>
+                                <span th:text="${#calendars.format(list.gameEndTimestamp, 'EEEE a h시 mm분')}"></span>
+                                <br>
+                                <img th:src="${img} + '/img/champion/'+ ${oneGameInfo.championName}  + '.png'"
+                                     width="50"
+                                     class="img-responsive center-block" alt="Sample post image"><br>
+                                <span class="my-info">KDA :
+                                  <span th:text="${oneGameInfo.kills} + ' / ' "></span>
+                                  <span th:text="${oneGameInfo.assists} + ' / '"></span>
+                                  <span th:text="${oneGameInfo.deaths}"></span>
+                                </span><br>
+                                <span th:text="${#calendars.format(#calendars.create(0,0,0,0,0,0,oneGameInfo.timePlayed * 1000), 'mm분 ss초')}"></span>
+                            </td>
+                            <!--spell-->
+                            <td>
+                                <img th:src="@{'/img/spell/' + ${oneGameInfo.summoner1Id} + '.png'}" width="50"
+                                     class="img-responsive center-block" alt="Sample post image">
+                                <img th:src="@{'/img/spell/' + ${oneGameInfo.summoner2Id} + '.png'}" width="50"
+                                     class="img-responsive center-block" alt="Sample post image">
+                            </td>
+                            <!--spell end -->
+
+                            <!--item-->
+                            <td class="flex">
+                                <div th:each="item, iterStat : ${#numbers.sequence(0, 5)}" class="img-container">
+                                    <img th:if="${oneGameInfo['item' + item] ne 0}"
+                                         th:src="${img} + '/img/item/' + ${oneGameInfo['item' + item]} + '.png'"
+                                         width="30"
+                                         class="img-responsive center-block"/>
+                                </div>
+                                <!--item end-->
+
+                                <!--position-->
+                            <td>
+                                <span class="badge badge-info" th:text="${oneGameInfo.role}">포지션</span><br>
+                            </td>
+                            <!--position end-->
+
+                            <!-- 게임 정보-->
+                            <td>
+                                <span class="badge badge-info" th:text="'시야 점수 : ' + ${oneGameInfo.visionScore}">시야점수</span><br>
+                                <span class="badge badge-info" th:text="'미니언 해치운 수 : ' + ${oneGameInfo.totalMinionsKilled}">미니언</span><br>
+                                <span class="badge badge-primary" th:text="'가한 피해량 : ' + ${oneGameInfo.totalDamageDealt}">가한피해</span><br>
+                                <span class="badge badge-danger" th:text="'받은 피해량 : ' + ${oneGameInfo.totalDamageTaken}">받은 피해</span><br>
+                                <span class="badge badge-primary"><!--{{Game_DATA['stats']['largestMultiKill']}}-->연속 킬 달성!</span><br>
+                                <span class="badge badge-info"><!--시야점수 : {{ Game_DATA['stats']['visionScore'] }}--></span>
+                            </td>
+                            <!-- 게임 정보 end-->
+
+                            <!-- 게임 정보-->
+                            <td>
+                                <span class="badge badge-info"
+                                      th:text="'연속 킬횟수 : ' + ${oneGameInfo.killingSprees}">연속킬 횟수</span><br/>
+                                <span class="badge badge-info" th:if="${oneGameInfo.firstBloodKill}">퍼스트 블러드</span><br/>
+                                <span class="badge badge-info" th:if="${oneGameInfo.doubleKills}">더블킬</span><br/>
+                                <span class="badge badge-danger" th:if="${oneGameInfo.tripleKills != 0}">트리플킬</span><br/>
+                                <span class="badge badge-danger" th:if="${oneGameInfo.quadraKills != 0}">쿼드라킬</span><br/>
+                            </td>
+                            <!--블루팀 레드팀-->
+<!--                            <td>-->
+<!--                                <span class="badge badge-info"-->
+<!--                                      th:if="${oneGameInfo.getTeamId() == 100}" th:text="${oneGameInfo.getSummonerName()}"> </span><br/>-->
+<!--                            </td>-->
+                            <!--블루팀 레드팀 end-->
+
+                        </tr>
+                    </div>
+                    <!-- 내 게임 정보 end -->
+
+                </div>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
 
 
-
-
-  <footer class="py-12 px-4 bg-gray-800 text-white">
-    <nav class="mb-4 space-x-4">
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Home
-      </a>
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Search
-      </a>
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Champions
-      </a>
-      <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
-        Ranked Stats
-      </a>
-    </nav>
-    <div class="flex justify-center gap-6 mb-4"></div>
-    <p class="text-center text-sm">© 2023 LoL Records. All rights reserved.</p>
-  </footer>
+    <footer class="py-12 px-4 bg-gray-800 text-white">
+        <nav class="mb-4 space-x-4">
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Home
+            </a>
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Search
+            </a>
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Champions
+            </a>
+            <a class="text-sm font-medium hover:underline" href="#" rel="ugc">
+                Ranked Stats
+            </a>
+        </nav>
+        <div class="flex justify-center gap-6 mb-4"></div>
+        <p class="text-center text-sm">© 2023 LoL Records. All rights reserved.</p>
+    </footer>
 </main>
 
 </html>

@@ -12,5 +12,4 @@ public class Config {
         return Logger.Level.FULL;
     }
 
-
 }
