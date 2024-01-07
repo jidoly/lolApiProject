@@ -67,7 +67,7 @@ public class MainController {
 
 
         int startValue = (start != null) ? start : 0;
-        int countValue = (count != null) ? count : 20;
+        int countValue = (count != null) ? count : 10;
 
 //        Get : 소환사 정보 - tier / win / lose .. By:summonerName
         List<LeagueDto> leagueInfo = riotApiService.findLeagueInfo(summonerName);
