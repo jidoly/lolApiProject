@@ -19,6 +19,14 @@ public class RiotApiController {
 
     private final RiotApiService riotApiService;
 
+    /**
+     *
+     * @param summonerName - 유저 닉네임
+     * @param start - 페이지수 시작
+     * @param count - 가져올 게임 목록의 수
+     *
+     * @return : 게임목록의 InfoDto
+     */
     @GetMapping("/api/gameInfo/{summonerName}")
     public List<InfoDto> getGame(@PathVariable String summonerName,
                                  @RequestParam(name = "start", required = false) Integer start,
@@ -35,6 +43,11 @@ public class RiotApiController {
         return bySummonerName;
 
     }
+
+    /**
+     * @param summonerName - 소환사의 닉네임
+     * @return : LeagueDto - 소환사 정보(티어, win, lose ...)
+     */
     @GetMapping("/api/summonerInfo/{summonerName}")
     public List<LeagueDto> getSummoner(@PathVariable String summonerName){
         //Get : 소환사 정보 - 티어 / win / lose .. By:summonerName
