@@ -5,6 +5,8 @@ import jidol.lolApiProject.api.dto.InfoDto;
 import jidol.lolApiProject.api.dto.LeagueDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +22,7 @@ public class RiotApiController {
     private final RiotApiService riotApiService;
 
     @GetMapping("/api/gameInfo/{summonerName}")
-    public List<InfoDto> getGame(@PathVariable String summonerName,
+    public ResponseEntity<List<InfoDto>> getGame(@PathVariable String summonerName,
                                  @RequestParam(name = "start", required = false) Integer start,
                                  @RequestParam(name = "count", required = false) Integer count){
 
@@ -28,17 +30,31 @@ public class RiotApiController {
         int startValue = (start != null) ? start : 0;
         int countValue = (count != null) ? count : 5;
 
-        //Get : 게임 정보 - gameId, gameEndTimestamp, <ParticipantDto> - 게임 정보(kill/assist/death..)  .. By:summonerName
-        List<InfoDto> bySummonerName = riotApiService.findBySummonerName(summonerName, startValue, countValue);
+        try {
+            //Get : 게임 정보 - gameId, gameEndTimestamp, <ParticipantDto> - 게임 정보(kill/assist/death..)  .. By:summonerName
+            List<InfoDto> bySummonerName = riotApiService.findBySummonerName(summonerName, startValue, countValue);
 
-        log.info("result.size = {}", bySummonerName.size());
-        return bySummonerName;
+            log.info("result.size = {}", bySummonerName.size());
+            return new ResponseEntity<>(bySummonerName, HttpStatus.OK);
+        }catch (Exception e) {
+            // 예외가 발생하면 에러 응답 반환
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
     }
     @GetMapping("/api/summonerInfo/{summonerName}")
-    public List<LeagueDto> getSummoner(@PathVariable String summonerName){
+    public ResponseEntity<List<LeagueDto>> getSummoner(@PathVariable String summonerName){
         //Get : 소환사 정보 - 티어 / win / lose .. By:summonerName
-        return riotApiService.findLeagueInfo(summonerName);
+        try {
+            // summonerName에 대한 정보를 가져오는 서비스 호출
+            List<LeagueDto> leagueInfo = riotApiService.findLeagueInfo(summonerName);
+
+            // 성공적인 응답을 반환
+            return new ResponseEntity<>(leagueInfo, HttpStatus.OK);
+        } catch (Exception e) {
+            // 예외가 발생하면 에러 응답 반환
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
