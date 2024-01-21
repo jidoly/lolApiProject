@@ -57,7 +57,7 @@ public class RiotApiController {
      */
     @GetMapping("/api/summonerInfo/{summonerName}")
     public ResponseEntity<List<LeagueDto>> getSummoner(@PathVariable String summonerName){
-        //Get : 소환사 정보 - 티어 / win / lose .. By:summonerName
+        //Get : 소환사 정보 - 티어 / win / lose ..By:summonerName
         try {
             // summonerName에 대한 정보를 가져오는 서비스 호출
             List<LeagueDto> leagueInfo = riotApiService.findLeagueInfo(summonerName);
